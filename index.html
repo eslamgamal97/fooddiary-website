@@ -16,7 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #15AE5C 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
 
@@ -259,20 +259,70 @@
     <script>
         function showPrivacy() {
             const privacySection = document.getElementById('privacy-policy');
-            const mainContent = document.querySelectorAll('header, .hero, .features, .about, footer');
+            const mainSections = document.querySelectorAll('.hero, .features, .about');
+            const footer = document.querySelector('footer');
             
-            if (privacySection.style.display === 'none' || privacySection.style.display === '') {
-                // Show privacy policy
-                privacySection.style.display = 'block';
-                mainContent.forEach(section => section.style.display = 'none');
-                document.body.scrollTop = 0;
-                document.documentElement.scrollTop = 0;
-            } else {
-                // Show main content
-                privacySection.style.display = 'none';
-                mainContent.forEach(section => section.style.display = 'block');
+            // Show privacy policy and hide main content
+            privacySection.style.display = 'block';
+            mainSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            footer.style.display = 'none';
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Add a back button dynamically
+            if (!document.getElementById('back-button')) {
+                const backButton = document.createElement('button');
+                backButton.id = 'back-button';
+                backButton.innerHTML = '← Back to Home';
+                backButton.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: #667eea;
+                    color: white;
+                    border: none;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    z-index: 1001;
+                    font-weight: bold;
+                `;
+                backButton.onclick = showHome;
+                document.body.appendChild(backButton);
             }
         }
+        
+        function showHome() {
+            const privacySection = document.getElementById('privacy-policy');
+            const mainSections = document.querySelectorAll('.hero, .features, .about');
+            const footer = document.querySelector('footer');
+            const backButton = document.getElementById('back-button');
+            
+            // Hide privacy policy and show main content
+            privacySection.style.display = 'none';
+            mainSections.forEach(section => {
+                section.style.display = 'block';
+            });
+            footer.style.display = 'block';
+            
+            // Remove back button
+            if (backButton) {
+                backButton.remove();
+            }
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+        
+        // Handle page load with hash
+        window.addEventListener('load', function() {
+            if (window.location.hash === '#privacy') {
+                showPrivacy();
+            }
+        });
     </script>
 </head>
 <body>
@@ -284,7 +334,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#" onclick="showPrivacy()">Privacy</a></li>
+                <li><a href="#" onclick="showPrivacy(); return false;">Privacy</a></li>
             </ul>
         </nav>
     </header>
@@ -353,7 +403,7 @@
                 </div>
                 <div class="footer-section">
                     <h3>Legal</h3>
-                    <p><a href="#" onclick="showPrivacy()">Privacy Policy</a></p>
+                    <p><a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></p>
                     <p><a href="#terms">Terms of Service</a></p>
                     <p><a href="#support">Support</a></p>
                 </div>
