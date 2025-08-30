@@ -224,6 +224,22 @@
             margin-top: 2rem;
         }
 
+        /* Prominent Privacy Policy Link */
+        .privacy-link-prominent {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .privacy-link-prominent a {
+            color: #667eea !important;
+            text-decoration: underline !important;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -255,75 +271,6 @@
             }
         }
     </style>
-    
-    <script>
-        function showPrivacy() {
-            const privacySection = document.getElementById('privacy-policy');
-            const mainSections = document.querySelectorAll('.hero, .features, .about');
-            const footer = document.querySelector('footer');
-            
-            // Show privacy policy and hide main content
-            privacySection.style.display = 'block';
-            mainSections.forEach(section => {
-                section.style.display = 'none';
-            });
-            footer.style.display = 'none';
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-            
-            // Add a back button dynamically
-            if (!document.getElementById('back-button')) {
-                const backButton = document.createElement('button');
-                backButton.id = 'back-button';
-                backButton.innerHTML = '← Back to Home';
-                backButton.style.cssText = `
-                    position: fixed;
-                    top: 20px;
-                    right: 20px;
-                    background: #667eea;
-                    color: white;
-                    border: none;
-                    padding: 10px 20px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    z-index: 1001;
-                    font-weight: bold;
-                `;
-                backButton.onclick = showHome;
-                document.body.appendChild(backButton);
-            }
-        }
-        
-        function showHome() {
-            const privacySection = document.getElementById('privacy-policy');
-            const mainSections = document.querySelectorAll('.hero, .features, .about');
-            const footer = document.querySelector('footer');
-            const backButton = document.getElementById('back-button');
-            
-            // Hide privacy policy and show main content
-            privacySection.style.display = 'none';
-            mainSections.forEach(section => {
-                section.style.display = 'block';
-            });
-            footer.style.display = 'block';
-            
-            // Remove back button
-            if (backButton) {
-                backButton.remove();
-            }
-            
-            // Scroll to top
-            window.scrollTo(0, 0);
-        }
-        
-        // Handle page load with hash
-        window.addEventListener('load', function() {
-            if (window.location.hash === '#privacy') {
-                showPrivacy();
-            }
-        });
-    </script>
 </head>
 <body>
     <header>
@@ -334,7 +281,7 @@
                 <li><a href="#features">Features</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#" onclick="showPrivacy(); return false;">Privacy</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
             </ul>
         </nav>
     </header>
@@ -398,12 +345,12 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>Contact Us</h3>
-                    <p>Email: eslamgamalelsayed97@gmail</p>
+                    <p>Email: eslamgamalelsayed97@gmail.com</p>
                     <p>For support and feedback</p>
                 </div>
                 <div class="footer-section">
                     <h3>Legal</h3>
-                    <p><a href="#" onclick="showPrivacy(); return false;">Privacy Policy</a></p>
+                    <p><a href="privacy.html">Privacy Policy</a></p>
                     <p><a href="#terms">Terms of Service</a></p>
                     <p><a href="#support">Support</a></p>
                 </div>
@@ -413,103 +360,17 @@
                     <p>Independent Developer</p>
                 </div>
             </div>
+            
+            <!-- Prominent Privacy Policy Link for Google Verification -->
+            <div class="privacy-link-prominent">
+                <a href="privacy.html">Privacy Policy</a> | 
+                <a href="#terms" style="color: #bdc3c7; text-decoration: underline;">Terms of Service</a>
+            </div>
+            
             <div class="footer-bottom">
                 <p>&copy; 2025 Food Diary. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-    <!-- Privacy Policy Section (Required for Google verification) -->
-    <section id="privacy-policy" style="background: white; padding: 60px 0; display: none;">
-        <div class="container">
-            <div style="max-width: 800px; margin: 0 auto;">
-                <h2 style="color: #2c5aa0; border-bottom: 2px solid #2c5aa0; padding-bottom: 10px; margin-bottom: 30px;">Privacy Policy for Food Diary App</h2>
-                
-                <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin-bottom: 30px;">
-                    <strong>Last updated:</strong> August 28, 2025
-                </div>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">1. Information We Collect</h3>
-                <p>Food Diary App collects the following information:</p>
-                <ul>
-                    <li><strong>Google Account Information:</strong> Email address and profile name when you sign in with Google</li>
-                    <li><strong>Meal Data:</strong> Food items, categories (breakfast, lunch, dinner, snacks), and timestamps that you manually enter</li>
-                    <li><strong>Usage Data:</strong> App performance and crash reports to improve the service</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">2. How We Use Your Information</h3>
-                <p>We use your information to:</p>
-                <ul>
-                    <li>Create and maintain your personal food diary</li>
-                    <li>Sync your meal data across your devices</li>
-                    <li>Create a personalized Google Spreadsheet in your Google Drive</li>
-                    <li>Provide customer support</li>
-                    <li>Improve the app's functionality</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">3. Data Storage and Security</h3>
-                <p>Your data is stored securely:</p>
-                <ul>
-                    <li><strong>Google Sheets:</strong> Your meal data is stored in a spreadsheet in your own Google Drive</li>
-                    <li><strong>Local Device:</strong> Temporary data is stored locally on your device</li>
-                    <li><strong>Firebase:</strong> Authentication data is handled securely by Google Firebase</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">4. Data Sharing</h3>
-                <p>We do not sell, trade, or share your personal information with third parties, except:</p>
-                <ul>
-                    <li>With Google services (Sheets, Drive, Authentication) as necessary for app functionality</li>
-                    <li>When required by law or to protect our legal rights</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">5. Third-Party Services</h3>
-                <p>This app uses the following third-party services:</p>
-                <ul>
-                    <li><strong>Google Sign-In:</strong> For user authentication</li>
-                    <li><strong>Google Sheets API:</strong> To create and manage your food diary spreadsheet</li>
-                    <li><strong>Google Drive API:</strong> To save spreadsheets in your Google Drive</li>
-                    <li><strong>Firebase:</strong> For authentication and app analytics</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">6. Your Rights</h3>
-                <p>You have the right to:</p>
-                <ul>
-                    <li><strong>Access:</strong> View all your data within the app and your Google Spreadsheet</li>
-                    <li><strong>Delete:</strong> Remove meals from your diary or delete your entire spreadsheet</li>
-                    <li><strong>Export:</strong> Download your data from your Google Spreadsheet</li>
-                    <li><strong>Revoke Access:</strong> Disconnect the app from your Google account at any time</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">7. Data Retention</h3>
-                <p>Your meal data is retained:</p>
-                <ul>
-                    <li>In your Google Spreadsheet until you delete it</li>
-                    <li>Locally on your device until you uninstall the app</li>
-                    <li>Authentication data is managed by Google Firebase</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">8. Children's Privacy</h3>
-                <p>This app is not intended for children under 13. We do not knowingly collect personal information from children under 13.</p>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">9. Changes to This Policy</h3>
-                <p>We may update this privacy policy from time to time. We will notify you of any changes by posting the new privacy policy in the app and updating the "Last updated" date.</p>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">10. Contact Us</h3>
-                <p>If you have any questions about this privacy policy, please contact us at:</p>
-                <ul>
-                    <li><strong>Email:</strong> eslamgamalelsayed97@gmail.com</li>
-                    <li><strong>Through the app:</strong> Use the feedback option in the navigation menu</li>
-                </ul>
-
-                <h3 style="color: #2c5aa0; margin-top: 30px;">11. Permissions Explanation</h3>
-                <p><strong>Internet Access:</strong> Required to sync data with Google Sheets and authenticate with Google</p>
-                <p><strong>Network State:</strong> To check connectivity before attempting sync operations</p>
-                <p><strong>Google Account Access:</strong> To create and access your personal food diary spreadsheet</p>
-
-                <hr style="margin: 40px 0; border: none; border-top: 1px solid #ddd;">
-                <p><em>This privacy policy is effective as of August 28, 2025, and was last updated on August 28, 2025.</em></p>
-            </div>
-        </div>
-    </section>
 </body>
 </html>
